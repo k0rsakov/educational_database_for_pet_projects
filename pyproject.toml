@@ -119,7 +119,7 @@ line-length = 120
 target-version = "py312"
 
 [tool.poetry]
-name = "foo"
+name = "educational_database_for_pet_projects"
 version = "0.0.1"
 description = ""
 authors = ["Ivan Korsakov <korsakov@example.com>"]
@@ -139,7 +139,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.dependencies]
 python = ">=3.12.1,<3.13"
 ruff = "^0.8.4"
-# Добавленные зависимости
 Faker = "37.3.0"
 pandas = "2.2.3"
 SQLAlchemy = "2.0.41"
