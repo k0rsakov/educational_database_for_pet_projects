@@ -70,6 +70,13 @@ def run_query(
     :return:
     """
 
+    if engine is None:
+        msg = "engine не должен быть None"
+        raise ValueError(msg)
+    if not sql:
+        msg = "sql не должен быть пустым"
+        raise ValueError(msg)
+
     with engine.connect() as connection:
         connection.execute(text(sql))
         connection.commit()
