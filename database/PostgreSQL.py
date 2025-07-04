@@ -12,7 +12,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 def generate_db_uri(
-    host: str = "localhost",
+        host: str = "localhost",
         port: int=5432,
         database: str = "postgres",
         user: str = "postgres",
