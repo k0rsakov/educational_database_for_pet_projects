@@ -1,6 +1,6 @@
 import logging
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Engine
 
 # Настройка логирования
@@ -41,11 +41,11 @@ def pg_connect_uri(
     """
     Создание подключения к БД PostgreSQL.
 
-    :param host: Хост; default: `localhost`
-    :param port: Порт; default: `5432`
-    :param database: Название базы данных; default: `postgres`
-    :param user: Пользователь; default: `postgres`
-    :param password: Пароль; default: `postgres`
+    :param host: Хост; default: `localhost`.
+    :param port: Порт; default: `5432`.
+    :param database: Название базы данных; default: `postgres`.
+    :param user: Пользователь; default: `postgres`.
+    :param password: Пароль; default: `postgres`.
     :return:
     """
     db_uri = generate_db_uri(
@@ -57,3 +57,19 @@ def pg_connect_uri(
     )
 
     return create_engine(db_uri)
+
+def run_query(
+        engine: Engine = None,
+        sql: str | None = None,
+) -> None:
+    """
+    Выполняет SQL-код.
+
+    :param engine: Движок БД; default: `None`.
+    :param sql: SQL-код; default: `None`.
+    :return:
+    """
+
+    with engine.connect() as connection:
+        connection.execute(text(sql))
+        connection.commit()
