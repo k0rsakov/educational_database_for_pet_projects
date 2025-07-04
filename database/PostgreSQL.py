@@ -60,7 +60,7 @@ def pg_connect_uri(
 
 def run_query(
         engine: Engine = None,
-        sql: str | None = None, 
+        sql: str | None = None,
 ) -> None:
     """
     Выполняет SQL-код.
