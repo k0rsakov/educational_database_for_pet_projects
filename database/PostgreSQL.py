@@ -11,6 +11,26 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+def generate_db_uri(
+    host: str = "localhost",
+        port: int=5432,
+        database: str = "postgres",
+        user: str = "postgres",
+        password: str = "postgres", # noqa: S107
+) -> str:
+    """
+    Создание строки подключения к БД PostgreSQL.
+
+    :param host: Хост; default: `localhost`
+    :param port: Порт; default: `5432`
+    :param database: Название базы данных; default: `postgres`
+    :param user: Пользователь; default: `postgres`
+    :param password: Пароль; default: `postgres`
+    :return:
+    """
+
+    return f"postgresql://{user}:{password}@{host}:{port}/{database}"
+
 def pg_connect_uri(
         host: str = "localhost",
         port: int=5432,
@@ -28,6 +48,12 @@ def pg_connect_uri(
     :param password: Пароль; default: `postgres`
     :return:
     """
-    db_url = f"postgresql://{user}:{password}@{host}:{port}/{database}"
+    db_uri = generate_db_uri(
+        host=host,
+        port=port,
+        database=database,
+        user=user,
+        password=password,
+    )
 
-    return create_engine(db_url)
+    return create_engine(db_uri)
