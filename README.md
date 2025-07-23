@@ -41,7 +41,7 @@ Netflix и PostgresPro Demo, а также выполнить полезные S
 docker run -d --name my_postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=postgres -p 5432:5432 postgres:13
 ```
 
-## Remove database
+## Remove container
 
 ```bash
 docker rm -f my_postgres
